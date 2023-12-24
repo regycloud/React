@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vanilla JS</title>
+</head>
+<body>
+    <div id="root"></div>
+</body>
+    <script type="text/javascript">
+        const app = document.getElementById('root');
+        const heading = document.createElement('h1');
+        const content = document.createTextNode('Before react, learning by this way');
+        const marquee = document.createElement('marquee');
+        heading.appendChild(content);
+        marquee.appendChild(heading);
+        app.appendChild(marquee);
+    </script>
+</html>

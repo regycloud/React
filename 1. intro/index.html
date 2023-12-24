@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+        const container = document.getElementById('root');
+        const root = ReactDOM.createRoot(container);
+
+        function Header({name}) {
+            const [click, setClick] = React.useState(0);
+
+            function handleClick() {
+                setClick(click + 1);
+            }
+            return (
+                <>
+            <h1 onClick={e => {alert('ok!')}}>Try to learn react again, {name ? name : 'user'}</h1>
+            <button onClick={(handleClick)}>click ({click}) </button>
+            </>
+            )
+        };
+        function Tombol({name, fn, dis}) {
+            return (
+                <button onClick={fn} disabled={dis ? true: false}> {name} </button>
+            )
+        }
+        function Counter() {
+            const [nilai, setNilai] = React.useState(0);
+
+            function tambahNilai() {
+                nilai > 8 ? setNilai('done') : setNilai(nilai+1);
+            }
+            function kuranginNilai() {
+                nilai == 0 ? setNilai('done') : setNilai(nilai-1);
+            }
+            function resetNilai() {
+                setNilai(0);
+            };
+            
+            return (
+                <div>
+                <Tombol name="-" fn={kuranginNilai} dis={nilai == 'done' ? 'disabled' : ''}/>
+                <span> {nilai} </span>
+                <Tombol name="+" fn={tambahNilai} dis={nilai == 'done' ? 'disabled' : ''} />
+                <br />
+                <br />
+                <Tombol name="Reset Nilai" fn={resetNilai} dis={nilai !== 'done' ? 'disabled' : ''} /> 
+                    </div>
+            )
+        }
+        function HomePage() {
+            const nama = ['abc', 'def', 'ghi'];
+            return (
+                <div>
+                    <ul>
+                        {nama.map((satuan) => (
+                            <li key = {satuan}>{satuan}</li>
+                        ))
+                        }
+                    </ul>
+
+                    {nama.map((satuan) => (<a key = {satuan}>{satuan}</a>))}
+                    <Header/>
+                    <Header name="owelo" />
+                </div>
+            )
+        }
+
+        root.render(
+            <Counter />);
+    </script>
+</body>
+</html>
